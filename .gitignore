@@ -24,7 +24,7 @@ coverage*.json
 *.user
 *.suo
 .idea/
-*.DS_Store
+.DS_Store
 
 # Logs
 *.log
