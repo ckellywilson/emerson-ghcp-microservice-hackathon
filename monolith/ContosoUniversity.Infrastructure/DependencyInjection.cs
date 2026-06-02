@@ -35,13 +35,13 @@ namespace ContosoUniversity.Infrastructure
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             // Configure options
-            services.Configure<Configuration.ServiceBusOptions>(options => 
+            services.Configure<ServiceBusOptions>(options => 
             {
                 options.ConnectionString = configuration["ServiceBus:ConnectionString"] ?? "UseDevelopmentStorage=true";
                 options.QueueName = configuration["ServiceBus:QueueName"] ?? "development-queue";
             });
 
-            services.Configure<Configuration.BlobStorageOptions>(options => 
+            services.Configure<BlobStorageOptions>(options => 
             {
                 options.ConnectionString = configuration["BlobStorage:ConnectionString"] ?? "UseDevelopmentStorage=true";
                 options.ContainerName = configuration["BlobStorage:ContainerName"] ?? "development-container";

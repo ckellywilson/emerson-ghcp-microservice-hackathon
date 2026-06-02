@@ -10,7 +10,7 @@ namespace ContosoUniversity.Infrastructure.Services
     public class BlobStorageService : IFileStorageService
     {
         private readonly ILogger<BlobStorageService> _logger;
-        private readonly ContosoUniversity.Infrastructure.Configuration.BlobStorageOptions _options;
+        private readonly BlobStorageOptions _options;
         private readonly bool _isDevelopment;
         private BlobServiceClient? _blobServiceClient;
         
@@ -18,7 +18,7 @@ namespace ContosoUniversity.Infrastructure.Services
         private static readonly Dictionary<string, byte[]> _localFiles = new Dictionary<string, byte[]>();
 
         public BlobStorageService(
-            IOptions<ContosoUniversity.Infrastructure.Configuration.BlobStorageOptions> options, 
+            IOptions<BlobStorageOptions> options, 
             ILogger<BlobStorageService> logger)
         {
             _options = options.Value;
