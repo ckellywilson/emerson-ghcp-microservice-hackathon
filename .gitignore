@@ -1,0 +1,30 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+*.dll
+*.exe
+*.pdb
+
+# NuGet
+*.nupkg
+project.assets.json
+project.nuget.cache
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+
+# Test results / coverage
+[Tt]est[Rr]esults/
+coverage*.json
+*.trx
+
+# User/IDE
+.vs/
+*.user
+*.suo
+.idea/
+*.DS_Store
+
+# Logs
+*.log
