@@ -1,6 +1,6 @@
 ---
-name: design-service-api
 description: Produce contract-first API and event design aligned to bounded context and loose coupling principles.
+agent: "agent"
 ---
 
 Design service contracts for **{{service_name}}**.
