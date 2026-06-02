@@ -1,6 +1,6 @@
 ---
-name: define-bounded-context
 description: Define bounded context boundaries, aggregate roots, invariants, and ubiquitous language before extraction.
+agent: "agent"
 ---
 
 Define the bounded context for **{{domain_name}}** in **{{system_name}}**.

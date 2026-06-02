@@ -1,20 +1,42 @@
 # Monolith Reference
 
-This directory is reserved for the ContosoUniversity brownfield monolith sourced from:
+This directory now contains the ContosoUniversity brownfield monolith source imported from:
 
-- `ckellywilson/day-in-the-life-copilot-lab`
+- `ckellywilson/day-in-the-life-copilot-lab` (`main` branch)
 
-## Expected architecture
+Imported projects:
 
-The reference app follows a .NET 8 clean-architecture layout:
+- `ContosoUniversity.sln`
+- `ContosoUniversity.Core/`
+- `ContosoUniversity.Infrastructure/`
+- `ContosoUniversity.Web/`
+- `ContosoUniversity.Tests/`
+- `ContosoUniversity.PlaywrightTests/`
 
-- Core
-- Infrastructure
-- Web
-- Tests
-- PlaywrightTests
+> Import excludes `*.bak` and `*.new` artifacts so the tree contains canonical source files only.
 
-## Domains emphasized in this workshop
+## Build and run
 
-- **Notification** (Day 1 showcase): clean extraction seam via `INotificationService`, notification model, and Service Bus integration.
-- **Student** (Day 2 challenge): coupled aggregate through `Enrollment`, requiring explicit data-ownership and anti-corruption decisions.
+```bash
+dotnet build monolith/ContosoUniversity.sln
+dotnet run --project monolith/ContosoUniversity.Web
+```
+
+## Workshop extraction targets
+
+### Day 1 showcase: Notification domain
+
+- Interface seam: [`ContosoUniversity.Core/Interfaces/INotificationService.cs`](ContosoUniversity.Core/Interfaces/INotificationService.cs)
+- Domain models: [`ContosoUniversity.Core/Models/Notification.cs`](ContosoUniversity.Core/Models/Notification.cs), [`ContosoUniversity.Core/Models/EntityOperation.cs`](ContosoUniversity.Core/Models/EntityOperation.cs)
+- Infrastructure service: [`ContosoUniversity.Infrastructure/Services/ServiceBusNotificationService.cs`](ContosoUniversity.Infrastructure/Services/ServiceBusNotificationService.cs)
+- Web endpoints: [`ContosoUniversity.Web/Controllers/NotificationController.cs`](ContosoUniversity.Web/Controllers/NotificationController.cs), [`ContosoUniversity.Web/Controllers/NotificationsController.cs`](ContosoUniversity.Web/Controllers/NotificationsController.cs)
+
+### Day 2 hackathon: Student / Enrollment domain
+
+- Student/Course/Enrollment models:
+  - [`ContosoUniversity.Core/Models/Student.cs`](ContosoUniversity.Core/Models/Student.cs)
+  - [`ContosoUniversity.Core/Models/Course.cs`](ContosoUniversity.Core/Models/Course.cs)
+  - [`ContosoUniversity.Core/Models/Enrollment.cs`](ContosoUniversity.Core/Models/Enrollment.cs)
+- Controllers:
+  - [`ContosoUniversity.Web/Controllers/StudentsController.cs`](ContosoUniversity.Web/Controllers/StudentsController.cs)
+  - [`ContosoUniversity.Web/Controllers/CoursesController.cs`](ContosoUniversity.Web/Controllers/CoursesController.cs)

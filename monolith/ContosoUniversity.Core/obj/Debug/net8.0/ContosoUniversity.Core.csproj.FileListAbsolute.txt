@@ -1,0 +1,13 @@
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/bin/Debug/net8.0/ContosoUniversity.Core.deps.json
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/bin/Debug/net8.0/ContosoUniversity.Core.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/bin/Debug/net8.0/ContosoUniversity.Core.pdb
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.csproj.AssemblyReference.cache
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.GeneratedMSBuildEditorConfig.editorconfig
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.AssemblyInfoInputs.cache
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.AssemblyInfo.cs
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.csproj.CoreCompileInputs.cache
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.sourcelink.json
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/refint/ContosoUniversity.Core.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ContosoUniversity.Core.pdb
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Core/obj/Debug/net8.0/ref/ContosoUniversity.Core.dll

@@ -1,0 +1,5 @@
+{
+  "ContosoUniversity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/tmp\/workspace\/ckellywilson\/emerson-ghcp-microservice-hackathon\/monolith\/ContosoUniversity.Core",
+  "ContosoUniversity.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/tmp\/workspace\/ckellywilson\/emerson-ghcp-microservice-hackathon\/monolith\/ContosoUniversity.Infrastructure",
+  "ContosoUniversity.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/tmp\/workspace\/ckellywilson\/emerson-ghcp-microservice-hackathon\/monolith\/ContosoUniversity.Web"
+}

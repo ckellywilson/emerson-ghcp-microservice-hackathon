@@ -1,0 +1,16 @@
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/bin/Debug/net8.0/ContosoUniversity.Infrastructure.deps.json
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/bin/Debug/net8.0/ContosoUniversity.Infrastructure.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/bin/Debug/net8.0/ContosoUniversity.Infrastructure.pdb
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/bin/Debug/net8.0/ContosoUniversity.Core.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/bin/Debug/net8.0/ContosoUniversity.Core.pdb
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.csproj.AssemblyReference.cache
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.AssemblyInfoInputs.cache
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.AssemblyInfo.cs
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.csproj.CoreCompileInputs.cache
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.sourcelink.json
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoU.6570249C.Up2Date
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/refint/ContosoUniversity.Infrastructure.dll
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ContosoUniversity.Infrastructure.pdb
+/tmp/workspace/ckellywilson/emerson-ghcp-microservice-hackathon/monolith/ContosoUniversity.Infrastructure/obj/Debug/net8.0/ref/ContosoUniversity.Infrastructure.dll

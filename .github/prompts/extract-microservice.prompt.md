@@ -1,6 +1,6 @@
 ---
-name: extract-microservice
 description: Plan and execute microservice extraction with DDD boundaries, strangler slices, and event-driven integration.
+agent: "agent"
 ---
 
 Extract the **{{domain_name}}** capability from **{{source_system}}** into **{{target_service}}**.

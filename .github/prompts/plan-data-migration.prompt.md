@@ -1,6 +1,6 @@
 ---
-name: plan-data-migration
 description: Plan sovereign datastore carve-out, ownership rules, and eventual-consistency strategy for extracted services.
+agent: "agent"
 ---
 
 Plan data migration for **{{service_name}}** from **{{source_data_model}}**.
