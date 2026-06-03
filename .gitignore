@@ -6,8 +6,12 @@
 *.exe
 *.pdb
 
+# Publish output
+**/[Pp]ublish/
+
 # NuGet
 *.nupkg
+packages/
 project.assets.json
 project.nuget.cache
 *.nuget.dgspec.json
@@ -18,13 +22,39 @@ project.nuget.cache
 [Tt]est[Rr]esults/
 coverage*.json
 *.trx
+BenchmarkDotNet.Artifacts/
+
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# SQL Server local databases
+*.mdf
+*.ldf
+
+# Local environment / secrets
+.env
+.env.*
+*.pfx
+*.p12
 
 # User/IDE
 .vs/
 *.user
 *.suo
+*.vsidx
+*.opendb
 .idea/
 .DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# VS Code .NET tooling cache
+dotnet/
 
 # Logs
 *.log
