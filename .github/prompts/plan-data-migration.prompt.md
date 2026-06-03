@@ -8,6 +8,7 @@ Plan data migration for **{{service_name}}** from **{{source_data_model}}**.
 Use these references:
 - `docs/architecture/microservice-principles.md`
 - `.github/skills/sovereign-data-stores/SKILL.md`
+- `docs/architecture/adr/0002-notification-service-boundary.md`
 - `docs/architecture/adr/0003-student-service-data-ownership.md`
 
 Output:
