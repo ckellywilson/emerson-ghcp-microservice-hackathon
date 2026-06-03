@@ -3,7 +3,7 @@
 ## Challenge statement
 
 Extract the **Student aggregate** into a standalone microservice while preserving behavior and establishing sovereign data ownership.
-Aggregate boundaries are already decided in [`../../docs/architecture/adr/0003-student-service-data-ownership.md`](../../docs/architecture/adr/0003-student-service-data-ownership.md) (**Accepted**) and are a workshop given.
+Aggregate boundaries are already decided in [`../../docs/architecture/adr/0003-student-service-data-ownership.md`](../../docs/architecture/adr/0003-student-service-data-ownership.md) (**Accepted**) and are a workshop requirement.
 
 Teams are **not** expected to deliver a full production-ready service in one day. The expected outcome is a Copilot-driven execution package plus one thin, demonstrable vertical slice.
 
@@ -73,7 +73,7 @@ Checkpoint expectations:
 
 | Category | Points | What earns full credit |
 |---|---:|---|
-| Effective GHCP usage | 30 | Strong agent-mode workflow, broad prompt/skill usage, and copy-pasteable invocations tied to outcomes |
+| Effective GHCP usage | 30 | Strong agent-mode workflow, broad prompt/skill usage, and copy-pastable invocations tied to outcomes |
 | Demonstrable vertical slice | 30 | Thin end-to-end slice works and reflects the prescribed Student/Enrollment/Course boundary |
 | Integration and seam handling | 20 | `CourseID` identity reference, projection strategy, event contracts, and ACL boundaries are explicit |
 | Quality strategy and tests | 15 | Practical test evidence and verification plan for contract/integration/idempotency |
