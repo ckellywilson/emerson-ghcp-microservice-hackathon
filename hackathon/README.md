@@ -2,12 +2,12 @@
 
 Teams extract the Student aggregate from the monolith, applying the same GHCP workflow used in the Day-1 showcase.
 
-The challenge is intentionally scoped to a single-day event (~6–7 hours): teams should deliver strong architecture/design artifacts and one thin vertical implementation slice, not a fully productionized service.
+The challenge is intentionally scoped to a single-day event (~4.5 build hours before presentations): teams should deliver one Copilot-driven vertical implementation slice, not a fully productionized service.
 
 ## Goals
 
 - Convert a coupled aggregate into an independently deployable service.
-- Resolve data ownership around `Enrollment` without shared tables.
+- Implement the prescribed Student/Enrollment boundary from ADR-0003 without shared tables.
 - Demonstrate event-driven integration and anti-corruption boundaries.
 
 ## Challenge brief
@@ -17,7 +17,7 @@ The challenge is intentionally scoped to a single-day event (~6–7 hours): team
 ## Suggested day flow
 
 - Kickoff/context and scope confirmation
-- Bounded-context + data ownership decisions
+- Copilot-assisted seam mapping and boundary implementation
 - API/event contract design
 - Thin implementation slice
 - Verification and final presentation

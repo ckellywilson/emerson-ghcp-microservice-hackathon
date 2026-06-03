@@ -1,15 +1,22 @@
 # ADR 0003: Student Service Data Ownership
 
 ## Status
-Proposed
+Accepted
 
 ## Context
-Student extraction introduces coupling to Course through `Enrollment`, creating ownership and consistency trade-offs across bounded contexts.
+Student is the prescribed Day-2 extraction target because it is the most weakly coupled aggregate in the monolith; the primary seam is `Enrollment -> Course`.
+`Enrollment` is a join entity (`EnrollmentID`, `CourseID`, `StudentID`, nullable `Grade`) and its CRUD currently appears in `StudentsController`/`CoursesController` (no dedicated `EnrollmentsController`).
 
 ## Decision
-Teams must select and justify an ownership model for enrollment-related data that preserves database-per-service principles and uses events/ACLs for cross-service collaboration.
+Resolve Day-2 boundaries as follows:
+- `Student` is the aggregate root extracted into `StudentService`.
+- `Enrollment` is a child entity under `Student` (not a standalone aggregate for this workshop implementation).
+- `Course` is a separate aggregate in a different bounded context and is out of extraction scope.
+- Student-service enrollment records are owned in a sovereign datastore, including `Grade` and lifecycle transitions.
+- Collaboration across service boundaries uses events plus anti-corruption layers (ACLs), never shared tables.
 
 ## Consequences
-- Creates explicit architectural trade-off discussions for Day 2.
-- Prevents shared-table coupling from reappearing in the target architecture.
-- May introduce eventual consistency and projection complexity that must be tested.
+- `Enrollment.Course` object navigation must be replaced by a `CourseID` identity reference plus a read projection for Course-facing data.
+- Cross-service consistency is eventual and implemented through event publication/consumption patterns.
+- Teams spend build time implementing this boundary with GHCP rather than re-debating aggregate ownership.
+- Optional stretch for presentations: argue why `Enrollment` might be promoted to its own aggregate in a future evolution.
