@@ -13,6 +13,7 @@ The challenge is intentionally scoped to a single-day event (~4.5 build hours be
 ## Challenge brief
 
 - [`docs/student-service-challenge.md`](docs/student-service-challenge.md)
+- [`docs/student-extraction-walkthrough.md`](docs/student-extraction-walkthrough.md)
 
 ## Suggested day flow
 
