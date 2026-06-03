@@ -14,11 +14,11 @@ jobs:
         run: |
           BRANCH="${{ github.head_ref }}"
           echo "Branch: $BRANCH"
-          if echo "$BRANCH" | grep -qE '^(feature|fix|chore|docs|refactor|test|hotfix)/.+'; then
+          if echo "$BRANCH" | grep -qE '^(feature|fix|chore|docs|refactor|test|hotfix|copilot)/.+'; then
             echo "✅ Branch name '$BRANCH' matches the required naming convention."
           else
             echo "❌ Branch name '$BRANCH' does not match the required naming convention."
-            echo "Allowed prefixes: feature/, fix/, chore/, docs/, refactor/, test/, hotfix/"
+            echo "Allowed prefixes: feature/, fix/, chore/, docs/, refactor/, test/, hotfix/, copilot/"
             exit 1
           fi
 
