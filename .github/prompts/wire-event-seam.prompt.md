@@ -8,6 +8,7 @@ Wire the event seam between **{{source_system}}** and **{{service_name}}**.
 Use these references:
 - `.github/skills/event-driven-integration/SKILL.md`
 - `docs/architecture/adr/0002-notification-service-boundary.md`
+- `docs/architecture/adr/0003-student-service-data-ownership.md`
 - `docs/architecture/microservice-principles.md`
 
 Output:
