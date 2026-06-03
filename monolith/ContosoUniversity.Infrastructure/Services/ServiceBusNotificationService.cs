@@ -12,7 +12,7 @@ namespace ContosoUniversity.Infrastructure.Services
     public class ServiceBusNotificationService : INotificationService, IAsyncDisposable
     {
         private readonly ILogger<ServiceBusNotificationService> _logger;
-        private readonly ContosoUniversity.Infrastructure.Configuration.ServiceBusOptions _options;
+        private readonly ServiceBusOptions _options;
         private readonly bool _isDevelopment;
         private ServiceBusClient? _client;
         private ServiceBusSender? _sender;
@@ -23,7 +23,7 @@ namespace ContosoUniversity.Infrastructure.Services
         private static int _nextId = 1;
 
         public ServiceBusNotificationService(
-            IOptions<ContosoUniversity.Infrastructure.Configuration.ServiceBusOptions> options,
+            IOptions<ServiceBusOptions> options,
             ILogger<ServiceBusNotificationService> logger)
         {
             _options = options.Value;
