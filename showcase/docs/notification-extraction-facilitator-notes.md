@@ -1,6 +1,6 @@
 # Notification Extraction Facilitator Notes (Day 1)
 
-Audience: instructors/facilitators running the Day-1 showcase.
+Audience: instructors/facilitators running the Day 1 showcase.
 
 Student-facing workflow remains in:
 - `showcase/docs/notification-extraction-walkthrough.md`
