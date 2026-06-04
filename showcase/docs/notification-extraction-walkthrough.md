@@ -73,7 +73,7 @@ This script demonstrates extraction of Notification as the first microservice us
 - Run `/test-strategy service_name="NotificationService"`.
 - Validate contract tests, event handler idempotency, and integration behavior.
 **Done when:**
-  - Contract tests, event-handler idempotency tests, and integration tests exist for the service.
+  - Contract tests, event-handler idempotency tests, and integration  exist for the service.
   - A fresh-clone `dotnet build` passes as the smoke test, matching the repo CI flow of `dotnet restore`, `dotnet build`, and `dotnet test` on PRs.
 
 ### Step 8 — Review

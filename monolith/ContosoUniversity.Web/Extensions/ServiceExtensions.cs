@@ -9,6 +9,8 @@ namespace ContosoUniversity.Web.Extensions
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpClient();
+
             // Register services based on environment
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {

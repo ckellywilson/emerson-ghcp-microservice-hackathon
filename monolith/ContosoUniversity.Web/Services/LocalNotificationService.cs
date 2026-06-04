@@ -1,6 +1,8 @@
 using ContosoUniversity.Core.Interfaces;
 using ContosoUniversity.Core.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,24 @@ namespace ContosoUniversity.Web.Services
     public class LocalNotificationService : INotificationService, IAsyncDisposable
     {
         private readonly ILogger<LocalNotificationService> _logger;
+        private readonly HttpClient _httpClient;
+        private readonly string _notificationAclUrl;
+        private readonly bool _mirrorToNotificationService;
         private static readonly List<Notification> _notifications = new List<Notification>();
         private static int _nextId = 1;
 
-        public LocalNotificationService(ILogger<LocalNotificationService> logger)
+        public LocalNotificationService(
+            ILogger<LocalNotificationService> logger,
+            IHttpClientFactory httpClientFactory,
+            IConfiguration configuration)
         {
             _logger = logger;
+            _httpClient = httpClientFactory.CreateClient();
+            var baseUrl = configuration["NotificationService:BaseUrl"] ?? "http://localhost:5109";
+            _notificationAclUrl = $"{baseUrl.TrimEnd('/')}/acl/monolith/entity-changed";
+            _mirrorToNotificationService = bool.TryParse(configuration["NotificationService:MirrorToService"], out var enabled)
+                ? enabled
+                : true;
             _logger.LogInformation("Using local notification service for development");
         }
 
@@ -50,6 +64,8 @@ namespace ContosoUniversity.Web.Services
 
             _logger.LogInformation("Local notification sent: {EntityType} {EntityId} {Operation}", 
                 entityType, entityId, operation);
+
+            MirrorToNotificationService(entityType, entityId, entityDisplayName, operation, userName);
         }
 
         public Task SendNotificationAsync(string entityType, string entityId, EntityOperation operation, string? userName = null)
@@ -63,6 +79,48 @@ namespace ContosoUniversity.Web.Services
             SendNotification(entityType, entityId, entityDisplayName, operation, userName);
             return Task.CompletedTask;
         }
+
+        private void MirrorToNotificationService(string entityType, string entityId, string? entityDisplayName, EntityOperation operation, string? userName)
+        {
+            if (!_mirrorToNotificationService)
+            {
+                return;
+            }
+
+            try
+            {
+                var payload = new LegacyEntityChangedInput(
+                    entityType,
+                    entityId,
+                    entityDisplayName,
+                    operation.ToString().ToUpperInvariant(),
+                    userName,
+                    Guid.NewGuid().ToString("N"),
+                    DateTimeOffset.UtcNow);
+
+                var response = _httpClient.PostAsJsonAsync(_notificationAclUrl, payload).GetAwaiter().GetResult();
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogWarning(
+                        "Mirroring notification to NotificationService failed. Status: {StatusCode}, Url: {Url}",
+                        response.StatusCode,
+                        _notificationAclUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to mirror notification to NotificationService endpoint {Url}", _notificationAclUrl);
+            }
+        }
+
+        private sealed record LegacyEntityChangedInput(
+            string EntityType,
+            string EntityId,
+            string? EntityDisplayName,
+            string Operation,
+            string? UserName,
+            string? CorrelationId,
+            DateTimeOffset? OccurredAt);
 
         public Notification? ReceiveNotification()
         {
