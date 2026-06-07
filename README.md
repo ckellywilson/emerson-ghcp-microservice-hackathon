@@ -74,3 +74,10 @@ Use these assets together to enforce DDD, loose coupling, high cohesion, soverei
 2. Follow the Day-1 walkthrough in [`showcase/docs/notification-extraction-walkthrough.md`](showcase/docs/notification-extraction-walkthrough.md).
 3. Run the Day-2 challenge using [`hackathon/docs/student-service-challenge.md`](hackathon/docs/student-service-challenge.md).
 4. Use prompts and skills from `.github/` to keep generation aligned with the architecture standards.
+
+## Facilitator Rehearsal Handoff
+
+- Use [`showcase/docs/rehearsal-handoff.md`](showcase/docs/rehearsal-handoff.md) for reset/runbook commands.
+- Immutable finished rehearsal tags:
+  - `rehearsal-day1-final`
+  - `rehearsal-day2-final`
