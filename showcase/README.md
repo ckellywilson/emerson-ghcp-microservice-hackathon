@@ -11,3 +11,7 @@ This track is a presenter-led walkthrough of extracting the Notification domain 
 ## Walkthrough
 
 - [`docs/notification-extraction-walkthrough.md`](docs/notification-extraction-walkthrough.md)
+
+## Facilitator Handoff
+
+- [docs/rehearsal-handoff.md](docs/rehearsal-handoff.md)
