@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/StudentService.Api/StudentService.Api.csproj" />
+    <Project Path="src/StudentService.Application/StudentService.Application.csproj" />
+    <Project Path="src/StudentService.BoundaryAdapters.Monolith/StudentService.BoundaryAdapters.Monolith.csproj" />
+    <Project Path="src/StudentService.Domain/StudentService.Domain.csproj" />
+    <Project Path="src/StudentService.Infrastructure/StudentService.Infrastructure.csproj" />
+  </Folder>
+</Solution>

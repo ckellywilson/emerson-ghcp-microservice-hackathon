@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "debug-build-monolith",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/monolith/ContosoUniversity.Web/bin/Debug/net8.0/ContosoUniversity.Web.dll",
             "args": [],
@@ -28,9 +28,55 @@
             }
         },
         {
+            "name": ".NET Launch Monolith Web",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "debug-build-monolith",
+            "program": "${workspaceFolder}/monolith/ContosoUniversity.Web/bin/Debug/net8.0/ContosoUniversity.Web.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/monolith/ContosoUniversity.Web",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5300"
+            }
+        },
+        {
+            "name": ".NET Launch StudentService API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "debug-build-studentservice",
+            "program": "${workspaceFolder}/services/StudentService/src/StudentService.Api/bin/Debug/net8.0/StudentService.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/services/StudentService/src/StudentService.Api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5201"
+            }
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug Monolith + StudentService",
+            "configurations": [
+                ".NET Launch Monolith Web",
+                ".NET Launch StudentService API"
+            ],
+            "stopAll": true
         }
     ]
 }

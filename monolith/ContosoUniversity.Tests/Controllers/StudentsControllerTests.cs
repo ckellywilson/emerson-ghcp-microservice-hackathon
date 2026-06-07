@@ -11,12 +11,15 @@ using ContosoUniversity.Core.Interfaces;
 using ContosoUniversity.Core.Models;
 using ContosoUniversity.Web.Controllers;
 using ContosoUniversity.Web.Models;
+using ContosoUniversity.Web.Services;
+using ContosoUniversity.Web.Services.Models;
 
 namespace ContosoUniversity.Tests.Controllers
 {
     public class StudentsControllerTests
     {
         private readonly Mock<IRepository<Student>> _mockStudentRepository;
+        private readonly Mock<IStudentServiceAclClient> _mockStudentServiceAclClient;
         private readonly Mock<INotificationService> _mockNotificationService;
         private readonly Mock<ILogger<StudentsController>> _mockLogger;
         private readonly StudentsController _controller;
@@ -24,11 +27,17 @@ namespace ContosoUniversity.Tests.Controllers
         public StudentsControllerTests()
         {
             _mockStudentRepository = new Mock<IRepository<Student>>();
+            _mockStudentServiceAclClient = new Mock<IStudentServiceAclClient>();
             _mockNotificationService = new Mock<INotificationService>();
             _mockLogger = new Mock<ILogger<StudentsController>>();
 
+            _mockStudentServiceAclClient
+                .Setup(client => client.GetStudentsAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(Array.Empty<StudentServiceStudentResponse>());
+
             _controller = new StudentsController(
                 _mockStudentRepository.Object,
+                _mockStudentServiceAclClient.Object,
                 _mockNotificationService.Object,
                 _mockLogger.Object);
         }
@@ -43,9 +52,14 @@ namespace ContosoUniversity.Tests.Controllers
                 new Student { ID = 2, FirstMidName = "Jane", LastName = "Smith", EnrollmentDate = DateTime.Parse("2020-09-01") }
             };
 
-            _mockStudentRepository
-                .Setup(repo => repo.GetQueryable())
-                .Returns(students.AsQueryable());
+            _mockStudentServiceAclClient
+                .Setup(client => client.GetStudentsAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(students.Select(s => new StudentServiceStudentResponse(
+                    s.ID,
+                    s.LastName,
+                    s.FirstMidName,
+                    DateOnly.FromDateTime(s.EnrollmentDate),
+                    Array.Empty<StudentServiceEnrollmentResponse>())).ToList());
 
             // Act
             var result = await _controller.Index("", "", "", 1);
@@ -60,11 +74,9 @@ namespace ContosoUniversity.Tests.Controllers
         public async Task Index_ReturnsEmptyList_WhenNoStudents()
         {
             // Arrange
-            var students = new List<Student>();
-
-            _mockStudentRepository
-                .Setup(repo => repo.GetAllAsync())
-                .ReturnsAsync(students);
+            _mockStudentServiceAclClient
+                .Setup(client => client.GetStudentsAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(Array.Empty<StudentServiceStudentResponse>());
 
             // Act
             var result = await _controller.Index("", "", "", 1);

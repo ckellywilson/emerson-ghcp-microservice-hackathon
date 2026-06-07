@@ -2,6 +2,53 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "debug-cleanup",
+            "type": "shell",
+            "command": "pkill -f 'ContosoUniversity.Web.dll|StudentService.Api.dll' || true; lsof -tiTCP:5300 -sTCP:LISTEN | xargs -r kill || true; lsof -tiTCP:5201 -sTCP:LISTEN | xargs -r kill || true"
+        },
+        {
+            "label": "build-monolith-web",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/monolith/ContosoUniversity.Web/ContosoUniversity.Web.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-studentservice-api",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/services/StudentService/src/StudentService.Api/StudentService.Api.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "debug-build-monolith",
+            "dependsOn": [
+                "debug-cleanup",
+                "build-monolith-web"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        {
+            "label": "debug-build-studentservice",
+            "dependsOn": [
+                "debug-cleanup",
+                "build-studentservice-api"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "process",

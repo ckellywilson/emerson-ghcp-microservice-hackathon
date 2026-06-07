@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Core.Interfaces;
 using ContosoUniversity.Core.Models;
 using ContosoUniversity.Web.Models;
+using ContosoUniversity.Web.Services;
+using ContosoUniversity.Web.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using ContosoUniversity.Web.Extensions;
@@ -15,14 +18,17 @@ namespace ContosoUniversity.Web.Controllers
     public class StudentsController : BaseController
     {
         private readonly IRepository<Student> _studentRepository;
+        private readonly IStudentServiceAclClient _studentServiceAclClient;
         private readonly new ILogger<StudentsController> _logger;
 
         public StudentsController(
             IRepository<Student> studentRepository,
+            IStudentServiceAclClient studentServiceAclClient,
             INotificationService notificationService,
             ILogger<StudentsController> logger) : base(notificationService, logger)
         {
             _studentRepository = studentRepository;
+            _studentServiceAclClient = studentServiceAclClient;
             _logger = logger;
         }
 
@@ -45,23 +51,32 @@ namespace ContosoUniversity.Web.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            var studentsQuery = _studentRepository.GetQueryable();
+            var cancellationToken = HttpContext?.RequestAborted ?? CancellationToken.None;
+            var serviceStudents = await _studentServiceAclClient.GetStudentsAsync(cancellationToken);
+            IEnumerable<Student> students = serviceStudents.Select(s => new Student
+            {
+                ID = s.StudentId,
+                LastName = s.LastName,
+                FirstMidName = s.FirstMidName,
+                EnrollmentDate = s.EnrollmentDate.ToDateTime(TimeOnly.MinValue)
+            });
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                studentsQuery = studentsQuery.Where(s => s.LastName.Contains(searchString)
+                students = students.Where(s => s.LastName.Contains(searchString)
                                        || s.FirstMidName.Contains(searchString));
             }
 
-            studentsQuery = sortOrder switch
+            students = sortOrder switch
             {
-                "name_desc" => studentsQuery.OrderByDescending(s => s.LastName),
-                "Date" => studentsQuery.OrderBy(s => s.EnrollmentDate),
-                "date_desc" => studentsQuery.OrderByDescending(s => s.EnrollmentDate),
-                _ => studentsQuery.OrderBy(s => s.LastName),
+                "name_desc" => students.OrderByDescending(s => s.LastName),
+                "Date" => students.OrderBy(s => s.EnrollmentDate),
+                "date_desc" => students.OrderByDescending(s => s.EnrollmentDate),
+                _ => students.OrderBy(s => s.LastName),
             };
 
             int pageSize = 10;
+            var studentsQuery = students.AsQueryable();
             return View(await PaginatedList<Student>.CreateAsync(studentsQuery, pageNumber ?? 1, pageSize));
         }
 
@@ -120,6 +135,20 @@ namespace ContosoUniversity.Web.Controllers
                 {
                     await _studentRepository.AddAsync(student);
                     await _studentRepository.SaveChangesAsync();
+
+                    try
+                    {
+                        var aclRequest = new StudentServiceCreateStudentRequest(
+                            student.LastName,
+                            student.FirstMidName,
+                            DateOnly.FromDateTime(student.EnrollmentDate.Date));
+
+                        await _studentServiceAclClient.CreateStudentAsync(aclRequest, HttpContext.RequestAborted);
+                    }
+                    catch (Exception aclEx)
+                    {
+                        _logger.LogWarning(aclEx, "Student created in monolith but sync to StudentService failed for {StudentName}.", $"{student.FirstMidName} {student.LastName}");
+                    }
                     
                     // Send notification for student creation
                     var studentName = $"{student.FirstMidName} {student.LastName}";
