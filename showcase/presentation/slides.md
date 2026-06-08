@@ -131,7 +131,9 @@ git pull --ff-only origin main
 For completed examples:
 
 ```bash
+# Choose one completed example at a time:
 git checkout rehearsal-day1-final-v2
+# or
 git checkout rehearsal-day2-final-v2
 ```
 
@@ -139,7 +141,7 @@ git checkout rehearsal-day2-final-v2
 
 ## Takeaway
 
-Copilot guidance plus architecture guardrails makes extraction:
+Copilot guidance plus architecture guardrails make extraction:
 
 - faster
 - safer

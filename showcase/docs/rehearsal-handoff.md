@@ -119,6 +119,8 @@ git checkout main
 ```bash
 git show --no-patch --decorate rehearsal-day1-final
 git show --no-patch --decorate rehearsal-day2-final
+git show --no-patch --decorate rehearsal-day1-final-v2
+git show --no-patch --decorate rehearsal-day2-final-v2
 ```
 
 ## Optional Build Checks
