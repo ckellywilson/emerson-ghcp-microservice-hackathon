@@ -13,8 +13,11 @@ This handoff gives facilitators a stable runbook for Day 1 and Day 2.
 
 - Day 1 final tag: `rehearsal-day1-final`
 - Day 2 final tag: `rehearsal-day2-final`
+- Day 1 final tag (v2): `rehearsal-day1-final-v2`
+- Day 2 final tag (v2): `rehearsal-day2-final-v2`
 - Day 1 feature branch: `feat/day1-notification-extraction`
 - Day 2 feature branch: `feat/day2-student-extraction`
+- Day 1 presentation deck (main): `showcase/presentation/slides.md`
 
 ## Facilitator Quick Start
 
@@ -49,11 +52,25 @@ git fetch --tags
 git checkout rehearsal-day1-final
 ```
 
+Preferred latest reference:
+
+```bash
+git fetch --tags --prune
+git checkout rehearsal-day1-final-v2
+```
+
 ### Day 2 final example
 
 ```bash
 git fetch --tags
 git checkout rehearsal-day2-final
+```
+
+Preferred latest reference:
+
+```bash
+git fetch --tags --prune
+git checkout rehearsal-day2-final-v2
 ```
 
 ## Return to Baseline After Demo
@@ -75,6 +92,7 @@ git pull --ff-only origin main
 - Do not merge workshop branches into `main`.
 - Keep `main` as the restart point for all cohorts.
 - Preserve rehearsal tags as immutable references.
+- Keep presentation content on `main` and treat rehearsal tags as code checkpoints.
 
 ## Troubleshooting
 
@@ -101,6 +119,8 @@ git checkout main
 ```bash
 git show --no-patch --decorate rehearsal-day1-final
 git show --no-patch --decorate rehearsal-day2-final
+git show --no-patch --decorate rehearsal-day1-final-v2
+git show --no-patch --decorate rehearsal-day2-final-v2
 ```
 
 ## Optional Build Checks
