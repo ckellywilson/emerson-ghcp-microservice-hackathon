@@ -4,5 +4,5 @@
   },
   "markdown.marp.exportType": "html",
   "markdown.marp.exportAutoOpen": true,
-  "markdown.marp.openExportedHtmlInIntegratedBrowser": "off"
+  "markdown.marp.openExportedHtmlInIntegratedBrowser": false
 }

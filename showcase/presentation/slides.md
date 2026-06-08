@@ -51,7 +51,7 @@ Monolith to Microservices: Notifications (Day 1) and Students (Day 2)
 | Phase | Evidence in Repo |
 |---|---|
 | Research | `docs/architecture/microservice-principles.md`, ADRs 0001-0003 |
-| Plan | Copilot compares candidates and selects Notification first |
+| Plan | `.github/prompts/extract-microservice.prompt.md`, `.github/prompts/define-bounded-context.prompt.md`, `.github/prompts/design-service-api.prompt.md` |
 | Implement | service skeletons + wiring/test prompts |
 | Guardrails | `.github/copilot-instructions.md` + extraction instructions |
 
