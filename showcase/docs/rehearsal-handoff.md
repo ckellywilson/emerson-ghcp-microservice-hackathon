@@ -106,6 +106,5 @@ git show --no-patch --decorate rehearsal-day2-final
 ## Optional Build Checks
 
 ```bash
-dotnet build monolith/ContosoUniversity.Web/ContosoUniversity.Web.csproj
-dotnet build services/StudentService/src/StudentService.Api/StudentService.Api.csproj
+dotnet build monolith/ContosoUniversity.sln
 ```
