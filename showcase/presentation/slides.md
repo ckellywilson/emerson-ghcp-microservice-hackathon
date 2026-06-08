@@ -51,9 +51,11 @@ Monolith to Microservices: Notifications (Day 1) and Students (Day 2)
 | Phase | Evidence in Repo |
 |---|---|
 | Research | `docs/architecture/microservice-principles.md`, ADRs 0001-0003 |
-| Plan | `.github/prompts/*` contract-first and decomposition prompts |
+| Plan | Copilot compares candidates and selects Notification first |
 | Implement | service skeletons + wiring/test prompts |
 | Guardrails | `.github/copilot-instructions.md` + extraction instructions |
+
+Plan-phase candidate analysis: Notification wins because the repo already has a clean `INotificationService` seam, Service Bus support, and almost no data to migrate. Student is the harder Day 2 target because `Enrollment -> Course` is more coupled.
 
 ---
 
@@ -62,6 +64,7 @@ Monolith to Microservices: Notifications (Day 1) and Students (Day 2)
 - Clean seam already exists via `INotificationService`
 - Event integration already present (Service Bus seam)
 - Minimal relational ownership = lower migration risk
+- Removes the need to untangle `Student -> Enrollment -> Course` on Day 1
 - Matches ADR-0002: cleanest seam first
 
 ---
@@ -80,26 +83,32 @@ NotificationService/
 - Bounded context for Notification
 - Anti-corruption mapping at monolith boundary
 - Event-driven integration with idempotent handling
+- Contract-first APIs and versioned event messages
+- Sovereign data ownership, even if the carve-out is tiny
+
+Expected output: a runnable Notification service slice that builds cleanly, respects the boundary, and can be demoed without touching the rest of the monolith.
 
 ---
 
 ## How We Build It (Live)
 
-1. `/extract-microservice`
-2. `/define-bounded-context`
-3. `/design-service-api`
-4. `/scaffold-service`
-5. `/wire-event-seam`
-6. `/test-strategy`
+1. `/extract-microservice` -> extraction plan, rollback points, candidate rationale
+2. `/define-bounded-context` -> aggregate root, invariants, glossary, context map
+3. `/design-service-api` -> versioned HTTP contracts, errors, idempotency, ACL points
+4. `/scaffold-service` -> service skeleton, `Program.cs`, `appsettings.json`, adapters
+5. `/wire-event-seam` -> event contracts, Service Bus integration, idempotent handler
+6. `/plan-data-migration` -> sovereign carve-out; for Notification, this stays trivial
+7. `/test-strategy` -> contract tests, event idempotency tests, integration tests
 
 ---
 
 ## Live Demo Checkpoints
 
-- Research output in chat is explicit and reusable
+- Plan output explicitly picks Notification as the lowest-friction candidate
 - Contracts are versioned before scaffolding
 - Generated seams align to ADR decisions
 - Build/test pass after slice implementation
+- The monolith keeps working while the service slice proves the pattern
 
 ---
 
