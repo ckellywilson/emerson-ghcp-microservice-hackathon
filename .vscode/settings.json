@@ -1,5 +1,8 @@
 {
   "workbench.editorAssociations": {
     "*.md": "vscode.markdown.preview.editor"
-  }
+  },
+  "markdown.marp.exportType": "html",
+  "markdown.marp.exportAutoOpen": true,
+  "markdown.marp.openExportedHtmlInIntegratedBrowser": false
 }
